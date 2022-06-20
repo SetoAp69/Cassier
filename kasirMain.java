@@ -7,15 +7,30 @@ public class kasirMain {
         return x.nama;
     }
 
+    public static int getHarga(produk x){
+        return x.harga;
+    }
+
     public static void tambahKeStruk(linkedList llist,ArrayList<produk> struk,int id,int jumlah ){
         for(int i=0;i<jumlah;i++){
             struk.add(llist.find(id));
         }
     }
 
-    public static void printStruk(ArrayList<produk> struk){
+    public static String printStruk(int id,int nama, int harga,int jumlah,int jumlahHarga){
+        String printedProduk="";
 
+        return printedProduk;
     }
+
+    public static int totalHarga(ArrayList<ArrayList<Object>> arList, int arrLength){
+        int harTotal = 0;
+        if(arrLength<=0){
+            return 0;
+        }
+        return (totalHarga(arList,arrLength-1)+ ((Integer) arList.get(arrLength-1).get(1)*getHarga((produk) arList.get(arrLength-1).get(0))));
+    }
+
     public static ArrayList<ArrayList<Object>> mapProduk(ArrayList<produk>list){
         Map<produk,Integer> mapedProduk=new HashMap<>();
         ArrayList<ArrayList<Object>> listProdukDanJumlah=new ArrayList<>();
@@ -26,8 +41,8 @@ public class kasirMain {
             else{
                 mapedProduk.put(i,1);
             }
-
         }
+
         for (produk m:mapedProduk.keySet()){
             listProdukDanJumlah.add(new ArrayList<>(List.of(m,mapedProduk.get(m))));
         }
@@ -65,6 +80,7 @@ public class kasirMain {
                     System.out.println(getNama((produk) strukDanJumlah.get(i).get(0))+" "+strukDanJumlah.get(i).get(1)+" "+jumlahHarga);
 
                 }
+                System.out.println(totalHarga(strukDanJumlah,strukDanJumlah.size()));
 
             }
 
